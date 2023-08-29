@@ -86,7 +86,7 @@ class PoswiseFeedForwardNet(nn.Module):
         super(PoswiseFeedForwardNet, self).__init__()
         self.fc = nn.Sequential(
             nn.Linear(d_model, d_ff, bias=False),
-            nn.ReLU(),
+            nn.ReLU(),#Rectified linear unit 修正线性单元
             nn.Linear(d_ff, d_model, bias=False))
 
     def forward(self, inputs):                                  # inputs: [batch_size, seq_len, d_model]

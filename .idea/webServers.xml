@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0972ffcb-bc27-49a1-8433-575480058fb5" name="transformer" url="http://10.227.71.9">
+        <fileTransfer rootFolder="/data00/home/tanzehao/projects/transformer_demo" accessType="SFTP" host="10.227.71.9" port="22" sshConfigId="6a00ff5f-d8d2-4672-b78a-5f4fa00bf7fe" sshConfig="tanzehao@10.227.71.9:22 agent" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
