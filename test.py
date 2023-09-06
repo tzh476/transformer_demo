@@ -15,7 +15,7 @@ def test(model, enc_input, start_symbol):
     return dec_input
 
 enc_inputs, dec_inputs, dec_outputs = make_data()
-loader = Data.DataLoader(MyDataSet(enc_inputs, dec_inputs, dec_outputs), 2, True)
+loader = Data.DataLoader(MyDataSet(enc_inputs, dec_inputs, dec_outputs), 1, True)
 enc_inputs, _, _ = next(iter(loader))
 model = torch.load('model.pth')
 predict_dec_input = test(model, enc_inputs[0].view(1, -1).cuda(), start_symbol=tgt_vocab["S"])

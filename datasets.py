@@ -2,7 +2,7 @@
 import torch
 import torch.utils.data as Data
 
-# Encoder_input    Decoder_input        Decoder_output
+            # Encoder_input    Decoder_input        Decoder_output
 sentences = [['我 是 学 生 P', 'S I am a student', 'I am a student E'],         # S: 开始符号
              ['我 喜 欢 学 习', 'S I like learning P', 'I like learning P E'],  # E: 结束符号
              ['我 是 男 生 P', 'S I am a boy', 'I am a boy E']]                 # P: 占位符号，如果当前句子不足固定长度用P占位
@@ -24,8 +24,14 @@ def make_data():
         enc_input = [[src_vocab[n] for n in sentences[i][0].split()]]
         dec_input = [[tgt_vocab[n] for n in sentences[i][1].split()]]
         dec_output = [[tgt_vocab[n] for n in sentences[i][2].split()]]
+        # enc_inputs 对应['我 是 学 生 P'] ['我 喜 欢 学 习'] ['我 是 男 生 P']
+        # [1, 2, 3, 4, 0],\n[1, 5, 6, 3, 7],\n[1, 2, 8, 4, 0]
         enc_inputs.extend(enc_input)
+        # dec_inputs 对应 ' S I  am  a student'       S I like learning P      S I am a boy
+        # [[1, 3, 4, 5, 6],\n        [1, 3, 7, 8, 0],\n        [1, 3, 4, 5, 9]]
         dec_inputs.extend(dec_input)
+        # dec_outputs 对应 'I am a student E'        'I like learning P E'       I  am a boy E
+        # [[3, 4, 5, 6, 2],\n        [3, 7, 8, 0, 2],\n        [3, 4, 5, 9, 2]]
         dec_outputs.extend(dec_output)
     return torch.LongTensor(enc_inputs), torch.LongTensor(dec_inputs), torch.LongTensor(dec_outputs)
 

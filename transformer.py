@@ -6,7 +6,7 @@ d_model = 512   # 字 Embedding 的维度
 d_ff = 2048     # 前向传播隐藏层维度
 d_k = d_v = 64  # K(=Q), V的维度
 n_layers = 6    # 有多少个encoder和decoder
-n_heads = 8     # Multi-Head Attention设置为8
+n_heads = 1     # Multi-Head Attention设置为8
 
 
 class PositionalEncoding(nn.Module):
@@ -202,7 +202,7 @@ class Transformer(nn.Module):
         self.projection = nn.Linear(d_model, tgt_vocab_size, bias=False).cuda()
 
     def forward(self, enc_inputs, dec_inputs):                          # enc_inputs: [batch_size, src_len]
-                                                                        # dec_inputs: [batch_size, tgt_len]
+        #                                                               # dec_inputs: [batch_size, tgt_len]
         enc_outputs, enc_self_attns = self.Encoder(enc_inputs)          # enc_outputs: [batch_size, src_len, d_model],
                                                                         # enc_self_attns: [n_layers, batch_size, n_heads, src_len, src_len]
         dec_outputs, dec_self_attns, dec_enc_attns = self.Decoder(
